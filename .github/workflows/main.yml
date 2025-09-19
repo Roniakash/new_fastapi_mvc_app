@@ -35,14 +35,8 @@ jobs:
             git pull origin main
 
             echo "=== Install Python dependencies (if changed) ==="
-            file if present
-            if [ -f "$APP_DIR/requirements.txt" ]; then
-              $VENV_PIP install -r "$APP_DIR/requirements.txt"
-            elif [ -f "$APP_DIR/requirment.txt" ]; then
-              $VENV_PIP install -r "$APP_DIR/requirment.txt"
-            else
-              echo "No requirements file found. Skipping pip install."
-            fi
+            source venv/bin/activate
+            pip install -r requirements.txt
 
             echo "=== Restart PM2 process if exists, otherwise start it ==="
             # Try graceful reload/restart; if PM2 doesn't know the app, start it with gunicorn
@@ -50,7 +44,7 @@ jobs:
               pm2 reload "$PM2_NAME" || pm2 restart "$PM2_NAME"
             else
               # Start using the existing venv gunicorn binary; adjust module:app if needed (main:app)
-              pm2 start "$GUNICORN_BIN" --name "$PM2_NAME" --interpreter=none -- -w 4 -k uvicorn.workers.UvicornWorker main:app --bind 209.209.40.144:5060
+              pm2 start /var/www/Geo-Ai/venv/bin/gunicorn -k uvicorn.workers.UvicornWorker app.main:app --bind 209.209.40.144:5060
             fi
 
             echo "=== Save PM2 process list and show status ==="
