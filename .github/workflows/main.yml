@@ -50,7 +50,7 @@ jobs:
               pm2 reload "$PM2_NAME" || pm2 restart "$PM2_NAME"
             else
               # Start using the existing venv gunicorn binary; adjust module:app if needed (main:app)
-              pm2 start "$GUNICORN_BIN" --name "$PM2_NAME" --interpreter=none -- -w 4 -k uvicorn.workers.UvicornWorker main:app --bind 209.209.40.144:8000
+              pm2 start "$GUNICORN_BIN" --name "$PM2_NAME" --interpreter=none -- -w 4 -k uvicorn.workers.UvicornWorker main:app --bind 209.209.40.144:5060
             fi
 
             echo "=== Save PM2 process list and show status ==="
