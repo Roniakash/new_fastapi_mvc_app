@@ -9,4 +9,4 @@ app = FastAPI(
 )
 
 # Include controllers
-app.include_router(map_controller.router, prefix="/buildings", tags=["Buildings"]);
+app.include_router(map_controller.router, prefix="/buildings", tags=["Buildings"])
