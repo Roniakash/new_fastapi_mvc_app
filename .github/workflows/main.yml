@@ -43,8 +43,7 @@ jobs:
             if pm2 list | grep -q "$PM2_NAME"; then
               pm2 reload "$PM2_NAME" || pm2 restart "$PM2_NAME"
             else
-              pm2 start gunicorn --name "$PM2_NAME" --interpreter=none -- \
-              -w 4 -k uvicorn.workers.UvicornWorker main:app --bind 209.209.40.144:8000
+              pm2 start /var/www/Geo-Ai/venv/bin/gunicorn   --name "$PM2_NAME"  --interpreter none   --   -k uvicorn.workers.UvicornWorker app.main:app --bind 209.209.40.144:8000
 
             fi
 
