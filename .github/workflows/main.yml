@@ -35,7 +35,7 @@ jobs:
             git pull origin main
 
             echo "=== Install Python dependencies (if changed) ==="
-            # prefer correctly spelled requirements; fallback to misspelled file if present
+            file if present
             if [ -f "$APP_DIR/requirements.txt" ]; then
               $VENV_PIP install -r "$APP_DIR/requirements.txt"
             elif [ -f "$APP_DIR/requirment.txt" ]; then
@@ -49,11 +49,9 @@ jobs:
             if pm2 list | grep -q "$PM2_NAME"; then
               pm2 reload "$PM2_NAME" || pm2 restart "$PM2_NAME"
             else
-              # Start using the existing venv gunicorn binary; adjust module:app if needed (image:app or main:app)
+              # Start using the existing venv gunicorn binary; adjust module:app if needed (main:app)
               pm2 start "$GUNICORN_BIN" --name "$PM2_NAME" --interpreter=none -- -w 4 -k uvicorn.workers.UvicornWorker main:app --bind 209.209.40.144:8000
             fi
 
             echo "=== Save PM2 process list and show status ==="
             pm2 save
-            pm2 status
-            pm2 logs --lines 50
