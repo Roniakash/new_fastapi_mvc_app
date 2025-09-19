@@ -23,8 +23,8 @@ jobs:
           script: |
 
             # Where your app lives on the server
-            APP_DIR=/var/www/python-api
-            PM2_NAME=python-api
+            APP_DIR=/var/www/Geo-Ai
+            PM2_NAME=Geo-Ai
             VENV_PIP="$APP_DIR/venv/bin/pip"
             VENV_PY="$APP_DIR/venv/bin/python"
             GUNICORN_BIN="$APP_DIR/venv/bin/gunicorn"
@@ -32,7 +32,6 @@ jobs:
             # cd to the main repository
             cd "$APP_DIR"
             echo "=== Pull latest code ==="
-            # Ensure branch is main - adjust if your default branch differs
             git pull origin main
 
             echo "=== Install Python dependencies (if changed) ==="
