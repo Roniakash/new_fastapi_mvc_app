@@ -2,8 +2,7 @@ name: Deploy to VPS
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   deploy:
@@ -12,18 +11,16 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Deploy via SSH
         # Using appleboy/ssh-action to run remote commands
-        uses: appleboy/ssh-action@v0.1.7
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SERVER_IP }}
           username: administrator
-          port: 22
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            set -e
 
             # Where your app lives on the server
             APP_DIR=/var/www/python-api
