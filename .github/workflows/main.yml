@@ -20,6 +20,7 @@ jobs:
         with:
           host: ${{ secrets.SERVER_IP }}
           username: administrator
+          port: 22
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             set -e
