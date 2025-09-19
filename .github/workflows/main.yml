@@ -29,9 +29,10 @@ jobs:
             VENV_PY="$APP_DIR/venv/bin/python"
             GUNICORN_BIN="$APP_DIR/venv/bin/gunicorn"
 
+            # cd to the main repository
+            cd "$APP_DIR"
             echo "=== Pull latest code ==="
             # Ensure branch is main - adjust if your default branch differs
-            git checkout main
             git pull origin main
 
             echo "=== Install Python dependencies (if changed) ==="
