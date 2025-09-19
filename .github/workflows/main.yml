@@ -9,8 +9,6 @@ jobs:
   deploy:
     name: SSH Deploy to VPS
     runs-on: ubuntu-latest
-    outputs: 
-    status: ${{ job.status }}
 
     steps:
       - name: Checkout repository
