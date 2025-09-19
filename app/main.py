@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.controllers import map_controller
+import webbrowser
 
 app = FastAPI(
     title="FastAPI MVC - TIFF + Buildings",
@@ -8,8 +9,4 @@ app = FastAPI(
 )
 
 # Include controllers
-app.include_router(map_controller.router, prefix="/buildings", tags=["Buildings"])
-
-# @app.get("/")
-# def root():
-#     return {"message": "FastAPI MVC is working!"}
+app.include_router(map_controller.router, prefix="/buildings", tags=["Buildings"]);
