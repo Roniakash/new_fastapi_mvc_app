@@ -1,0 +1,4 @@
+fastapi
+uvicorn
+geoai-py
+leafmap
