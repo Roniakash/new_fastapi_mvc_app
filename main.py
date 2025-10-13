@@ -46,25 +46,26 @@ def download_building(min_lon: float, min_lat: float, max_lon: float, max_lat: f
         # print("📦 Received release:", release)
         # test_url = f"https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/{release}/theme=buildings/"
         # print("🔍 Testing URL:", test_url)
+
         # Download building data
         
-        bbox = (72.8, 18.9, 73.2, 19.3)  # Bounding box for Mumbai
-        output = "mumbai_buildings.geojson"
+        # bbox = (72.8, 18.9, 73.2, 19.3)  # Bounding box for Mumbai
+        # output = "mumbai_buildings.geojson"
 
-        download_overture_buildings(bbox=bbox, output=output)
-        # data_file: str = download_overture_buildings(
-        #     bbox=bbox, 
-        #     output="buildings.geojson",
+        # download_overture_buildings(bbox=bbox, output=output)
+        data_file: str = download_overture_buildings(
+            bbox=bbox, 
+            output="buildings.geojson",
         #     overture_type="building",
         #     release=release
-        # )
-        # print("✅ File saved at:", data_file)
+        )
+        print("✅ File saved at:", data_file)
         
         # Extract stats
-        # status = extract_building_stats("buildings.geojson")
-        # print("📊 Stats extracted:", status) , "stats": status
+        status = extract_building_stats("buildings.geojson")
+        print("📊 Stats extracted:", status)
 
-        return {"saved_file": output}
+        return {"saved_file": data_file, "stats": status}
 
     except Exception as e:
         print("❌ Error:", str(e))
